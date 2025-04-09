@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== "PRODUCTION") {
     require("dotenv").config();
-}
 
 const express = require("express"),
     mongoose = require("mongoose"),
@@ -20,12 +18,7 @@ const flightRoutes = require("./routes/flight");
 const authRoutes = require("./routes/auth");
 
 const dbUrl = process.env.dbURL || "mongodb://localhost:27017/skySprint";
-mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-});
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "Connection Error:"));
